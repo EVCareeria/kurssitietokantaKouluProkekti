@@ -1,0 +1,58 @@
+﻿@model kurssitietokanta.Models.Tutkinnonosat
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tutkinnon osat</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutkintoosanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutkintoosanimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.LaajuusOSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.LaajuusOSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Esitietovaatimus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Esitietovaatimus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutkinnot.Tutkintonimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutkinnot.Tutkintonimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vastuuopettajat.Vastuuopettajanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vastuuopettajat.Vastuuopettajanimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Tutkintoosa_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

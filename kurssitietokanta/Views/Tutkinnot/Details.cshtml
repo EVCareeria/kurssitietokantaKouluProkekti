@@ -1,0 +1,66 @@
+﻿@model kurssitietokanta.Models.Tutkinnot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Tutkinnot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutkintonimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutkintonimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Aloitusvuosi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Aloitusvuosi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Päättymisvuosi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Päättymisvuosi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kesto)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kesto)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.OSP)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.OSP)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutkintoalueet.Tutkintoaluenimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutkintoalueet.Tutkintoaluenimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Tutkinto_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

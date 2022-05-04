@@ -1,0 +1,37 @@
+﻿@model kurssitietokanta.Models.Teknisetmateriaalit
+
+@{
+    ViewBag.Title = "Luo uusi";
+}
+
+@*tästä alkaa modal-ikkuna--------------------------------------------------------------------------*@
+<div class="modal fade" id="ModalTekninenmateriaaliCreate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Lisää teknistä materiaalia</h3>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Teknisetmateriaalit", FormMethod.Post, new { id = "createForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-group">
+                        @Html.LabelFor(model => model.Kuvaus, htmlAttributes: new { @class = "control-label col-md-2" })
+                        <div class="col-md-10">
+                            @Html.EditorFor(model => model.Kuvaus, new { htmlAttributes = new { @class = "form-control" } })
+                            @Html.ValidationMessageFor(model => model.Kuvaus, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="modal-footer">
+                @*Formin lähettävä button, joka ei kuitenkaan ole formin sisällä, mutta viittaa formin ID:hen*@
+                <button type="submit" class="btn btn-sm card-buttons" form="createForm"><i class="fas fa-check"></i></button>
+                @*Kontrollerin kutsu Url.Action -komennolla, jotta peruuttaminen johtaa alkutilanteeseen*@
+                <a href="@Url.Action("Index", "Teknisetmateriaalit")" class="btn-sm card-buttons"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

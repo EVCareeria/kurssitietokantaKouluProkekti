@@ -1,0 +1,62 @@
+﻿@model kurssitietokanta.Models.Lukukaudet
+
+@{
+    ViewBag.Title = "Poista";
+}
+
+@*tästä alkaa modal-ikkuna--------------------------------------------------------------------------*@
+<div class="modal fade" id="ModalLukukaudetDelete">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Oletko varma, että haluat poistaa lukukauden? @Html.HiddenFor(model => model.Lukukausi_Id)</h3>
+                @*<button class="btn btn-warning" onclick="deleteOrder(@Model.Lukukausi_Id)"><i class="jquerydelete fas fa-trash-alt"></i></button>*@
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    @*<dl class="dl-horizontal">*@
+                    <dl class="col-sm-6">
+                        <dt>Päivien lukumäärä</dt>
+                        <dd>@Html.DisplayFor(model => model.Päivienlukumäärä)</dd>
+                        <dt>Tuntien määrä</dt>
+                        <dd>@Html.DisplayFor(model => model.Tuntienmäärä)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Pvm)</dt>
+                        <dd>@Html.DisplayFor(model => model.Pvm)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Klo)</dt>
+                        <dd>@Html.DisplayFor(model => model.Klo)</dd>
+
+                        <dt>Viikonpäivä</dt>
+                        <dd>@Html.DisplayFor(model => model.Vikkonpäivä)</dd>
+                        <dt>Aihe OP tilausjärjestely</dt>
+                        <dd>@Html.DisplayFor(model => model.AiheOPtilausjärjestely)</dd>
+                    </dl>
+                    <dl class="col-sm-6">
+                        <dt>Kausinumero</dt>
+                        <dd>@Html.DisplayFor(model => model.Kausiennumerot.Kausinumero_Id)</dd>
+                        <dt>Kieli</dt>
+                        <dd>@Html.DisplayFor(model => model.Kielet.Kielinimi)</dd>
+                        <dt>Opintojakson nimi</dt>
+                        <dd>@Html.DisplayFor(model => model.Opintojaksot.Opintojaksonnimi)</dd>
+                        <dt>Kausi</dt>
+                        <dd>@Html.DisplayFor(model => model.Toteutuskaudet.Kausinimi)</dd>
+                        <dt>Toteutustapa</dt>
+                        <dd>@Html.DisplayFor(model => model.Toteutustapoja.Toteutustapanimi)</dd>
+                        <dt>Tutkinnon osa</dt>
+                        <dd>@Html.DisplayFor(model => model.Tutkinnonosat.Tutkintoosanimi)</dd>
+                    </dl>
+                </div>
+            </div>
+                <div class="modal-footer">
+                    @using (Html.BeginForm())
+                    {
+                        @Html.AntiForgeryToken()
+
+                        <div class="form-actions no-color">
+                            <button type="submit" value="Delete" class="btn btn-sm card-buttons"><i class="fas fa-trash-alt"></i></button>
+                            <a href="@Url.Action("Index", "Lukukaudet")" class="btn btn-sm card-buttons"><i class="fas fa-times"></i></a>
+                        </div>
+                    }
+                </div>
+            </div>
+    </div>
+</div>

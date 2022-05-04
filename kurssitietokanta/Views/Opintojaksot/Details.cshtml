@@ -1,0 +1,74 @@
+﻿@model kurssitietokanta.Models.Opintojaksot
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Opintojaksot</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Opintojaksonnimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opintojaksonnimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tavoiteet)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tavoiteet)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opintokeskinen)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opintokeskinen)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opettajat.Etunimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opettajat.Etunimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opintomateriaalit.Kuvaus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opintomateriaalit.Kuvaus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Teknisetmateriaalit.Kuvaus)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Teknisetmateriaalit.Kuvaus)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutkinnonosat.Tutkintoosanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutkinnonosat.Tutkintoosanimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Opintojakson_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

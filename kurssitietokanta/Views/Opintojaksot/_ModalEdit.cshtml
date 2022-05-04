@@ -1,0 +1,83 @@
+﻿@model kurssitietokanta.Models.Opintojaksot
+@*@model IEnumerable<kurssitietokanta.Models.Opintojaksot>*@
+
+@*tästä alkaa modal-ikkuna--------------------------------------------------------------------------*@
+<div class="modal fade" id="ModalOpintojaksotEdit">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Muokkaa tietoja</h3>
+            </div>
+            <div class="modal-body">
+                @*modal-tyyppisen ikkunan koodiesimerkki - alkuperäisen lomakkeen koodi alkaa*@
+                @using (Html.BeginForm("_ModalEdit", "Opintojaksot", FormMethod.Post, new { id = "editForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Opintojakson_Id)
+                        <div class="form-group text-left">
+                            @Html.LabelFor(model => model.Opintojaksonnimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Opintojaksonnimi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Opintojaksonnimi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Tutkintoosa_Id, "Tutkintoosa_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("Tutkintoosa_Id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tutkintoosa_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Opettajan_Id, "Opettajan_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("Opettajan_Id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Opettajan_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Tavoiteet, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Tavoiteet, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Tavoiteet, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Opintokeskinen, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Opintokeskinen, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Opintokeskinen, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Tekininenmateriaali_Id, "Tekininenmateriaali_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("Tekininenmateriaali_Id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Tekininenmateriaali_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Opintomateriaali_Id, "Opintomateriaali_Id", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.DropDownList("Opintomateriaali_Id", null, htmlAttributes: new { @class = "form-control" })
+                                @Html.ValidationMessageFor(model => model.Opintomateriaali_Id, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                    </div>
+
+                }
+            </div>
+            <div class="modal-footer">
+                @*Formin lähettävä button, joka ei kuitenkaan ole formin sisällä, mutta viittaa formin ID:hen*@
+                <button type="submit" class="btn btn-sm card-buttons" form="editForm"><i class="fas fa-check"></i></button>
+                @*Kontrollerin kutsu Url.Action -komennolla, jotta peruuttaminen johtaa alkutilanteeseen*@
+                <a href="@Url.Action("Index", "Opintojaksot")" class="btn btn-sm card-buttons"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+
+

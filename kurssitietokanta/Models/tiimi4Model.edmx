@@ -1,0 +1,1374 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="tiimi4Model.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012.Azure" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Kausiennumerot">
+          <Key>
+            <PropertyRef Name="Kausinumero_Id" />
+          </Key>
+          <Property Name="Kausinumero_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kausinimero" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Käyttöoikeudet">
+          <Key>
+            <PropertyRef Name="Käyttöoikeus_Id" />
+          </Key>
+          <Property Name="Käyttöoikeus_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Käytöoikeusnimi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kuvaus" Type="nvarchar" MaxLength="300" />
+          <Property Name="Rooli_Id" Type="int" />
+          <Property Name="Pvm" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Kielet">
+          <Key>
+            <PropertyRef Name="Kieli_id" />
+          </Key>
+          <Property Name="Kieli_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kielinimi" Type="nvarchar" MaxLength="30" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Kurssimateriaalit">
+          <Key>
+            <PropertyRef Name="Kurssimateriaali_Id" />
+          </Key>
+          <Property Name="Kurssimateriaali_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Opintomateriaali_Id" Type="int" />
+          <Property Name="Tekninenmateriaali_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Login_Id" />
+          </Key>
+          <Property Name="Login_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Sähköposti" Type="nvarchar" MaxLength="200" />
+          <Property Name="Salasana" Type="nvarchar" MaxLength="50" />
+          <Property Name="Rooli_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Lukukaudet">
+          <Key>
+            <PropertyRef Name="Lukukausi_Id" />
+          </Key>
+          <Property Name="Lukukausi_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kausinumero_Id" Type="int" Nullable="false" />
+          <Property Name="Tutkintoosa_Id" Type="int" Nullable="false" />
+          <Property Name="Opintojakson_Id" Type="int" Nullable="false" />
+          <Property Name="Päivienlukumäärä" Type="nvarchar" MaxLength="30" />
+          <Property Name="Tuntienmäärä" Type="nvarchar" MaxLength="20" />
+          <Property Name="Toteutustapa_Id" Type="int" Nullable="false" />
+          <Property Name="Toteutuskausi_Id" Type="int" Nullable="false" />
+          <Property Name="Pvm" Type="date" />
+          <Property Name="Klo" Type="nchar" MaxLength="15" />
+          <Property Name="Vikkonpäivä" Type="nvarchar" MaxLength="15" />
+          <Property Name="Kieli_Id" Type="int" />
+          <Property Name="AiheOPtilausjärjestely" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Opettajat">
+          <Key>
+            <PropertyRef Name="Opettajan_Id" />
+          </Key>
+          <Property Name="Opettajan_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Etunimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Sukunimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="200" Nullable="false" />
+          <Property Name="Puh" Type="nvarchar" MaxLength="25" Nullable="false" />
+          <Property Name="Taydetnimet" Type="nvarchar" MaxLength="101" StoreGeneratedPattern="Computed" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Opintojaksot">
+          <Key>
+            <PropertyRef Name="Opintojakson_Id" />
+          </Key>
+          <Property Name="Opintojakson_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Opintojaksonnimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tutkintoosa_Id" Type="int" Nullable="false" />
+          <Property Name="Opettajan_Id" Type="int" Nullable="false" />
+          <Property Name="Tavoiteet" Type="nvarchar" MaxLength="300" />
+          <Property Name="Opintokeskinen" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Tekininenmateriaali_Id" Type="int" />
+          <Property Name="Opintomateriaali_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Opintomateriaalit">
+          <Key>
+            <PropertyRef Name="Opintomateriaali_Id" />
+          </Key>
+          <Property Name="Opintomateriaali_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kuvaus" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Roolit">
+          <Key>
+            <PropertyRef Name="Rooli_Id" />
+          </Key>
+          <Property Name="Rooli_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Roolinimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Roolityyppi" Type="nvarchar" MaxLength="50" />
+          <Property Name="Kuvaus" Type="nvarchar" MaxLength="300" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="principal_id" Type="int" Nullable="false" />
+          <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="version" Type="int" />
+          <Property Name="definition" Type="varbinary(max)" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6013: The table/view 'tiimi4.dbo.Table_1' does not have a primary key defined and no valid primary key could be inferred. This table/view has been excluded. To use the entity, you will need to review your schema, add the correct keys, and uncomment it.
+        <EntityType Name="Table_1">
+          <Property Name="testi_ID" Type="int" />
+          <Property Name="nimi" Type="nchar" MaxLength="50" />
+        </EntityType>-->
+        <EntityType Name="Teknisetmateriaalit">
+          <Key>
+            <PropertyRef Name="Tekininenmateriaali_Id" />
+          </Key>
+          <Property Name="Tekininenmateriaali_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kuvaus" Type="nvarchar" MaxLength="2000" />
+        </EntityType>
+        <EntityType Name="Toteutuskaudet">
+          <Key>
+            <PropertyRef Name="Toteutuskausi_Id" />
+          </Key>
+          <Property Name="Toteutuskausi_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Kausinimi" Type="nvarchar" MaxLength="20" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Toteutustapoja">
+          <Key>
+            <PropertyRef Name="Toteutustapa_Id" />
+          </Key>
+          <Property Name="Toteutustapa_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Toteutustapanimi" Type="nvarchar" MaxLength="30" />
+        </EntityType>
+        <EntityType Name="Tutkinnonosat">
+          <Key>
+            <PropertyRef Name="Tutkintoosa_Id" />
+          </Key>
+          <Property Name="Tutkintoosa_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tutkintoosanimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Tutkinto_Id" Type="int" Nullable="false" />
+          <Property Name="Vastuuopettajan_Id" Type="int" Nullable="false" />
+          <Property Name="LaajuusOSP" Type="nvarchar" MaxLength="2000" />
+          <Property Name="Esitietovaatimus" Type="nchar" MaxLength="1000" />
+        </EntityType>
+        <EntityType Name="Tutkinnot">
+          <Key>
+            <PropertyRef Name="Tutkinto_Id" />
+          </Key>
+          <Property Name="Tutkinto_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tutkintonimi" Type="nvarchar" MaxLength="120" Nullable="false" />
+          <Property Name="Aloitusvuosi" Type="date" />
+          <Property Name="Päättymisvuosi" Type="date" />
+          <Property Name="Kesto" Type="nvarchar" MaxLength="15" />
+          <Property Name="OSP" Type="nvarchar" MaxLength="10" />
+        </EntityType>
+        <EntityType Name="Tutkintoalueet">
+          <Key>
+            <PropertyRef Name="Tutkintoalue_Id" />
+          </Key>
+          <Property Name="Tutkintoalue_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tutkinto_Id" Type="int" Nullable="false" />
+          <Property Name="Tutkintoaluenimi" Type="nvarchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Tutkintokurssit">
+          <Key>
+            <PropertyRef Name="Tutkintokurssi_Id" />
+          </Key>
+          <Property Name="Tutkintokurssi_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Tutkinto_Id" Type="int" />
+          <Property Name="Opintojakso_Id" Type="int" />
+        </EntityType>
+        <EntityType Name="Vastuuopettajat">
+          <Key>
+            <PropertyRef Name="Vastuuopettajan_Id" />
+          </Key>
+          <Property Name="Vastuuopettajan_Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Vastuuopettajanimi" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Opettajan_Id" Type="int" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'tiimi4.sys.database_firewall_rules' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+          <Property Name="start_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="end_ip_address" Type="varchar" MaxLength="45" Nullable="false" />
+          <Property Name="create_date" Type="datetime" Nullable="false" />
+          <Property Name="modify_date" Type="datetime" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_Käyttöoikeudet_Roolit">
+          <End Role="Roolit" Type="Self.Roolit" Multiplicity="0..1" />
+          <End Role="Käyttöoikeudet" Type="Self.Käyttöoikeudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roolit">
+              <PropertyRef Name="Rooli_Id" />
+            </Principal>
+            <Dependent Role="Käyttöoikeudet">
+              <PropertyRef Name="Rooli_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kurssimateriaalit_Opintomateriaalit">
+          <End Role="Opintomateriaalit" Type="Self.Opintomateriaalit" Multiplicity="0..1" />
+          <End Role="Kurssimateriaalit" Type="Self.Kurssimateriaalit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintomateriaalit">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Principal>
+            <Dependent Role="Kurssimateriaalit">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kurssimateriaalit_Teknisetmateriaalit">
+          <End Role="Teknisetmateriaalit" Type="Self.Teknisetmateriaalit" Multiplicity="0..1" />
+          <End Role="Kurssimateriaalit" Type="Self.Kurssimateriaalit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teknisetmateriaalit">
+              <PropertyRef Name="Tekininenmateriaali_Id" />
+            </Principal>
+            <Dependent Role="Kurssimateriaalit">
+              <PropertyRef Name="Tekninenmateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Roolit">
+          <End Role="Roolit" Type="Self.Roolit" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roolit">
+              <PropertyRef Name="Rooli_Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="Rooli_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Kausiennumerot">
+          <End Role="Kausiennumerot" Type="Self.Kausiennumerot" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kausiennumerot">
+              <PropertyRef Name="Kausinumero_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Kausinumero_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Kielet">
+          <End Role="Kielet" Type="Self.Kielet" Multiplicity="0..1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kielet">
+              <PropertyRef Name="Kieli_id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Kieli_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Opintojaksot">
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintojaksot">
+              <PropertyRef Name="Opintojakson_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Opintojakson_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Toteutuskaudet">
+          <End Role="Toteutuskaudet" Type="Self.Toteutuskaudet" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toteutuskaudet">
+              <PropertyRef Name="Toteutuskausi_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Toteutuskausi_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Toteutustapoja">
+          <End Role="Toteutustapoja" Type="Self.Toteutustapoja" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toteutustapoja">
+              <PropertyRef Name="Toteutustapa_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Toteutustapa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Tutkinnonosat">
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnonosat">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Opettajat">
+          <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opettajat">
+              <PropertyRef Name="Opettajan_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Opettajan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Opintomateriaalit">
+          <End Role="Opintomateriaalit" Type="Self.Opintomateriaalit" Multiplicity="0..1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintomateriaalit">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Teknisetmateriaalit">
+          <End Role="Teknisetmateriaalit" Type="Self.Teknisetmateriaalit" Multiplicity="0..1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teknisetmateriaalit">
+              <PropertyRef Name="Tekininenmateriaali_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Tekininenmateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Tutkinnonosat">
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnonosat">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutintokurssit_Opintojaksot">
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="0..1" />
+          <End Role="Tutkintokurssit" Type="Self.Tutkintokurssit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintojaksot">
+              <PropertyRef Name="Opintojakson_Id" />
+            </Principal>
+            <Dependent Role="Tutkintokurssit">
+              <PropertyRef Name="Opintojakso_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutintokurssit_Tutkinnot">
+          <End Role="Tutkinnot" Type="Self.Tutkinnot" Multiplicity="0..1" />
+          <End Role="Tutkintokurssit" Type="Self.Tutkintokurssit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnot">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Principal>
+            <Dependent Role="Tutkintokurssit">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutkinnonosat_Tutkinnot">
+          <End Role="Tutkinnot" Type="Self.Tutkinnot" Multiplicity="1" />
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnot">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Principal>
+            <Dependent Role="Tutkinnonosat">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutkinnonosat_Vastuuopettajat1">
+          <End Role="Vastuuopettajat" Type="Self.Vastuuopettajat" Multiplicity="1" />
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vastuuopettajat">
+              <PropertyRef Name="Vastuuopettajan_Id" />
+            </Principal>
+            <Dependent Role="Tutkinnonosat">
+              <PropertyRef Name="Vastuuopettajan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutkintoalueet_Tutkinnot">
+          <End Role="Tutkinnot" Type="Self.Tutkinnot" Multiplicity="1" />
+          <End Role="Tutkintoalueet" Type="Self.Tutkintoalueet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnot">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Principal>
+            <Dependent Role="Tutkintoalueet">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vastuuopettajat_Opettajat">
+          <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="0..1" />
+          <End Role="Vastuuopettajat" Type="Self.Vastuuopettajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opettajat">
+              <PropertyRef Name="Opettajan_Id" />
+            </Principal>
+            <Dependent Role="Vastuuopettajat">
+              <PropertyRef Name="Opettajan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tiimi4ModelStoreContainer">
+          <EntitySet Name="Kausiennumerot" EntityType="Self.Kausiennumerot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Käyttöoikeudet" EntityType="Self.Käyttöoikeudet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kielet" EntityType="Self.Kielet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Kurssimateriaalit" EntityType="Self.Kurssimateriaalit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Login" EntityType="Self.Login" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Lukukaudet" EntityType="Self.Lukukaudet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Opettajat" EntityType="Self.Opettajat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Opintojaksot" EntityType="Self.Opintojaksot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Opintomateriaalit" EntityType="Self.Opintomateriaalit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Roolit" EntityType="Self.Roolit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Teknisetmateriaalit" EntityType="Self.Teknisetmateriaalit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Toteutuskaudet" EntityType="Self.Toteutuskaudet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Toteutustapoja" EntityType="Self.Toteutustapoja" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutkinnonosat" EntityType="Self.Tutkinnonosat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutkinnot" EntityType="Self.Tutkinnot" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutkintoalueet" EntityType="Self.Tutkintoalueet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Tutkintokurssit" EntityType="Self.Tutkintokurssit" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Vastuuopettajat" EntityType="Self.Vastuuopettajat" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" store:Type="Views" store:Schema="sys">
+            <DefiningQuery>SELECT 
+    [database_firewall_rules].[id] AS [id], 
+    [database_firewall_rules].[name] AS [name], 
+    [database_firewall_rules].[start_ip_address] AS [start_ip_address], 
+    [database_firewall_rules].[end_ip_address] AS [end_ip_address], 
+    [database_firewall_rules].[create_date] AS [create_date], 
+    [database_firewall_rules].[modify_date] AS [modify_date]
+    FROM [sys].[database_firewall_rules] AS [database_firewall_rules]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK_Käyttöoikeudet_Roolit" Association="Self.FK_Käyttöoikeudet_Roolit">
+            <End Role="Roolit" EntitySet="Roolit" />
+            <End Role="Käyttöoikeudet" EntitySet="Käyttöoikeudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kurssimateriaalit_Opintomateriaalit" Association="Self.FK_Kurssimateriaalit_Opintomateriaalit">
+            <End Role="Opintomateriaalit" EntitySet="Opintomateriaalit" />
+            <End Role="Kurssimateriaalit" EntitySet="Kurssimateriaalit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kurssimateriaalit_Teknisetmateriaalit" Association="Self.FK_Kurssimateriaalit_Teknisetmateriaalit">
+            <End Role="Teknisetmateriaalit" EntitySet="Teknisetmateriaalit" />
+            <End Role="Kurssimateriaalit" EntitySet="Kurssimateriaalit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Roolit" Association="Self.FK_Login_Roolit">
+            <End Role="Roolit" EntitySet="Roolit" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Kausiennumerot" Association="Self.FK_Lukukaudet_Kausiennumerot">
+            <End Role="Kausiennumerot" EntitySet="Kausiennumerot" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Kielet" Association="Self.FK_Lukukaudet_Kielet">
+            <End Role="Kielet" EntitySet="Kielet" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Opintojaksot" Association="Self.FK_Lukukaudet_Opintojaksot">
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Toteutuskaudet" Association="Self.FK_Lukukaudet_Toteutuskaudet">
+            <End Role="Toteutuskaudet" EntitySet="Toteutuskaudet" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Toteutustapoja" Association="Self.FK_Lukukaudet_Toteutustapoja">
+            <End Role="Toteutustapoja" EntitySet="Toteutustapoja" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Tutkinnonosat" Association="Self.FK_Lukukaudet_Tutkinnonosat">
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Opettajat" Association="Self.FK_Opintojaksot_Opettajat">
+            <End Role="Opettajat" EntitySet="Opettajat" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Opintomateriaalit" Association="Self.FK_Opintojaksot_Opintomateriaalit">
+            <End Role="Opintomateriaalit" EntitySet="Opintomateriaalit" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Teknisetmateriaalit" Association="Self.FK_Opintojaksot_Teknisetmateriaalit">
+            <End Role="Teknisetmateriaalit" EntitySet="Teknisetmateriaalit" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Tutkinnonosat" Association="Self.FK_Opintojaksot_Tutkinnonosat">
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutintokurssit_Opintojaksot" Association="Self.FK_Tutintokurssit_Opintojaksot">
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+            <End Role="Tutkintokurssit" EntitySet="Tutkintokurssit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutintokurssit_Tutkinnot" Association="Self.FK_Tutintokurssit_Tutkinnot">
+            <End Role="Tutkinnot" EntitySet="Tutkinnot" />
+            <End Role="Tutkintokurssit" EntitySet="Tutkintokurssit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutkinnonosat_Tutkinnot" Association="Self.FK_Tutkinnonosat_Tutkinnot">
+            <End Role="Tutkinnot" EntitySet="Tutkinnot" />
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutkinnonosat_Vastuuopettajat1" Association="Self.FK_Tutkinnonosat_Vastuuopettajat1">
+            <End Role="Vastuuopettajat" EntitySet="Vastuuopettajat" />
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutkintoalueet_Tutkinnot" Association="Self.FK_Tutkintoalueet_Tutkinnot">
+            <End Role="Tutkinnot" EntitySet="Tutkinnot" />
+            <End Role="Tutkintoalueet" EntitySet="Tutkintoalueet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vastuuopettajat_Opettajat" Association="Self.FK_Vastuuopettajat_Opettajat">
+            <End Role="Opettajat" EntitySet="Opettajat" />
+            <End Role="Vastuuopettajat" EntitySet="Vastuuopettajat" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="tiimi4Model" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Kausiennumerot">
+          <Key>
+            <PropertyRef Name="Kausinumero_Id" />
+          </Key>
+          <Property Name="Kausinumero_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kausinimero" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Lukukaudet" Relationship="Self.FK_Lukukaudet_Kausiennumerot" FromRole="Kausiennumerot" ToRole="Lukukaudet" />
+        </EntityType>
+        <EntityType Name="Käyttöoikeudet">
+          <Key>
+            <PropertyRef Name="Käyttöoikeus_Id" />
+          </Key>
+          <Property Name="Käyttöoikeus_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Käytöoikeusnimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kuvaus" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Rooli_Id" Type="Int32" />
+          <Property Name="Pvm" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Roolit" Relationship="Self.FK_Käyttöoikeudet_Roolit" FromRole="Käyttöoikeudet" ToRole="Roolit" />
+        </EntityType>
+        <EntityType Name="Kielet">
+          <Key>
+            <PropertyRef Name="Kieli_id" />
+          </Key>
+          <Property Name="Kieli_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kielinimi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lukukaudet" Relationship="Self.FK_Lukukaudet_Kielet" FromRole="Kielet" ToRole="Lukukaudet" />
+        </EntityType>
+        <EntityType Name="Kurssimateriaalit">
+          <Key>
+            <PropertyRef Name="Kurssimateriaali_Id" />
+          </Key>
+          <Property Name="Kurssimateriaali_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opintomateriaali_Id" Type="Int32" />
+          <Property Name="Tekninenmateriaali_Id" Type="Int32" />
+          <NavigationProperty Name="Opintomateriaalit" Relationship="Self.FK_Kurssimateriaalit_Opintomateriaalit" FromRole="Kurssimateriaalit" ToRole="Opintomateriaalit" />
+          <NavigationProperty Name="Teknisetmateriaalit" Relationship="Self.FK_Kurssimateriaalit_Teknisetmateriaalit" FromRole="Kurssimateriaalit" ToRole="Teknisetmateriaalit" />
+        </EntityType>
+        <EntityType Name="Login">
+          <Key>
+            <PropertyRef Name="Login_Id" />
+          </Key>
+          <Property Name="Login_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Sähköposti" Type="String" MaxLength="200" FixedLength="false" Unicode="true" />
+          <Property Name="Salasana" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Rooli_Id" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Roolit" Relationship="Self.FK_Login_Roolit" FromRole="Login" ToRole="Roolit" />
+        </EntityType>
+        <EntityType Name="Lukukaudet">
+          <Key>
+            <PropertyRef Name="Lukukausi_Id" />
+          </Key>
+          <Property Name="Lukukausi_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kausinumero_Id" Type="Int32" Nullable="false" />
+          <Property Name="Tutkintoosa_Id" Type="Int32" Nullable="false" />
+          <Property Name="Opintojakson_Id" Type="Int32" Nullable="false" />
+          <Property Name="Päivienlukumäärä" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <Property Name="Tuntienmäärä" Type="String" MaxLength="20" FixedLength="false" Unicode="true" />
+          <Property Name="Toteutustapa_Id" Type="Int32" Nullable="false" />
+          <Property Name="Toteutuskausi_Id" Type="Int32" Nullable="false" />
+          <Property Name="Pvm" Type="DateTime" Precision="0" />
+          <Property Name="Klo" Type="String" MaxLength="15" FixedLength="true" Unicode="true" />
+          <Property Name="Vikkonpäivä" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="Kieli_Id" Type="Int32" />
+          <Property Name="AiheOPtilausjärjestely" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kausiennumerot" Relationship="Self.FK_Lukukaudet_Kausiennumerot" FromRole="Lukukaudet" ToRole="Kausiennumerot" />
+          <NavigationProperty Name="Kielet" Relationship="Self.FK_Lukukaudet_Kielet" FromRole="Lukukaudet" ToRole="Kielet" />
+          <NavigationProperty Name="Opintojaksot" Relationship="Self.FK_Lukukaudet_Opintojaksot" FromRole="Lukukaudet" ToRole="Opintojaksot" />
+          <NavigationProperty Name="Toteutuskaudet" Relationship="Self.FK_Lukukaudet_Toteutuskaudet" FromRole="Lukukaudet" ToRole="Toteutuskaudet" />
+          <NavigationProperty Name="Toteutustapoja" Relationship="Self.FK_Lukukaudet_Toteutustapoja" FromRole="Lukukaudet" ToRole="Toteutustapoja" />
+          <NavigationProperty Name="Tutkinnonosat" Relationship="Self.FK_Lukukaudet_Tutkinnonosat" FromRole="Lukukaudet" ToRole="Tutkinnonosat" />
+        </EntityType>
+        <EntityType Name="Opettajat">
+          <Key>
+            <PropertyRef Name="Opettajan_Id" />
+          </Key>
+          <Property Name="Opettajan_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Etunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Sukunimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="200" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Puh" Type="String" MaxLength="25" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Taydetnimet" Type="String" MaxLength="101" FixedLength="false" Unicode="true" Nullable="false" annotation:StoreGeneratedPattern="Computed" />
+          <NavigationProperty Name="Opintojaksot" Relationship="Self.FK_Opintojaksot_Opettajat" FromRole="Opettajat" ToRole="Opintojaksot" />
+          <NavigationProperty Name="Vastuuopettajat" Relationship="Self.FK_Vastuuopettajat_Opettajat" FromRole="Opettajat" ToRole="Vastuuopettajat" />
+        </EntityType>
+        <EntityType Name="Opintojaksot">
+          <Key>
+            <PropertyRef Name="Opintojakson_Id" />
+          </Key>
+          <Property Name="Opintojakson_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Opintojaksonnimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tutkintoosa_Id" Type="Int32" Nullable="false" />
+          <Property Name="Opettajan_Id" Type="Int32" Nullable="false" />
+          <Property Name="Tavoiteet" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <Property Name="Opintokeskinen" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Tekininenmateriaali_Id" Type="Int32" />
+          <Property Name="Opintomateriaali_Id" Type="Int32" />
+          <NavigationProperty Name="Lukukaudet" Relationship="Self.FK_Lukukaudet_Opintojaksot" FromRole="Opintojaksot" ToRole="Lukukaudet" />
+          <NavigationProperty Name="Opettajat" Relationship="Self.FK_Opintojaksot_Opettajat" FromRole="Opintojaksot" ToRole="Opettajat" />
+          <NavigationProperty Name="Opintomateriaalit" Relationship="Self.FK_Opintojaksot_Opintomateriaalit" FromRole="Opintojaksot" ToRole="Opintomateriaalit" />
+          <NavigationProperty Name="Teknisetmateriaalit" Relationship="Self.FK_Opintojaksot_Teknisetmateriaalit" FromRole="Opintojaksot" ToRole="Teknisetmateriaalit" />
+          <NavigationProperty Name="Tutkinnonosat" Relationship="Self.FK_Opintojaksot_Tutkinnonosat" FromRole="Opintojaksot" ToRole="Tutkinnonosat" />
+          <NavigationProperty Name="Tutkintokurssit" Relationship="Self.FK_Tutintokurssit_Opintojaksot" FromRole="Opintojaksot" ToRole="Tutkintokurssit" />
+        </EntityType>
+        <EntityType Name="Opintomateriaalit">
+          <Key>
+            <PropertyRef Name="Opintomateriaali_Id" />
+          </Key>
+          <Property Name="Opintomateriaali_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kuvaus" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kurssimateriaalit" Relationship="Self.FK_Kurssimateriaalit_Opintomateriaalit" FromRole="Opintomateriaalit" ToRole="Kurssimateriaalit" />
+          <NavigationProperty Name="Opintojaksot" Relationship="Self.FK_Opintojaksot_Opintomateriaalit" FromRole="Opintomateriaalit" ToRole="Opintojaksot" />
+        </EntityType>
+        <EntityType Name="Roolit">
+          <Key>
+            <PropertyRef Name="Rooli_Id" />
+          </Key>
+          <Property Name="Rooli_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Roolinimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Roolityyppi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Kuvaus" Type="String" MaxLength="300" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Käyttöoikeudet" Relationship="Self.FK_Käyttöoikeudet_Roolit" FromRole="Roolit" ToRole="Käyttöoikeudet" />
+          <NavigationProperty Name="Login" Relationship="Self.FK_Login_Roolit" FromRole="Roolit" ToRole="Login" />
+        </EntityType>
+        <EntityType Name="sysdiagrams">
+          <Key>
+            <PropertyRef Name="diagram_id" />
+          </Key>
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="principal_id" Type="Int32" Nullable="false" />
+          <Property Name="diagram_id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="version" Type="Int32" />
+          <Property Name="definition" Type="Binary" MaxLength="Max" FixedLength="false" />
+        </EntityType>
+        <EntityType Name="Teknisetmateriaalit">
+          <Key>
+            <PropertyRef Name="Tekininenmateriaali_Id" />
+          </Key>
+          <Property Name="Tekininenmateriaali_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kuvaus" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Kurssimateriaalit" Relationship="Self.FK_Kurssimateriaalit_Teknisetmateriaalit" FromRole="Teknisetmateriaalit" ToRole="Kurssimateriaalit" />
+          <NavigationProperty Name="Opintojaksot" Relationship="Self.FK_Opintojaksot_Teknisetmateriaalit" FromRole="Teknisetmateriaalit" ToRole="Opintojaksot" />
+        </EntityType>
+        <EntityType Name="Toteutuskaudet">
+          <Key>
+            <PropertyRef Name="Toteutuskausi_Id" />
+          </Key>
+          <Property Name="Toteutuskausi_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Kausinimi" Type="String" MaxLength="20" FixedLength="false" Unicode="true" Nullable="false" />
+          <NavigationProperty Name="Lukukaudet" Relationship="Self.FK_Lukukaudet_Toteutuskaudet" FromRole="Toteutuskaudet" ToRole="Lukukaudet" />
+        </EntityType>
+        <EntityType Name="Toteutustapoja">
+          <Key>
+            <PropertyRef Name="Toteutustapa_Id" />
+          </Key>
+          <Property Name="Toteutustapa_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Toteutustapanimi" Type="String" MaxLength="30" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Lukukaudet" Relationship="Self.FK_Lukukaudet_Toteutustapoja" FromRole="Toteutustapoja" ToRole="Lukukaudet" />
+        </EntityType>
+        <EntityType Name="Tutkinnonosat">
+          <Key>
+            <PropertyRef Name="Tutkintoosa_Id" />
+          </Key>
+          <Property Name="Tutkintoosa_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tutkintoosanimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Tutkinto_Id" Type="Int32" Nullable="false" />
+          <Property Name="Vastuuopettajan_Id" Type="Int32" Nullable="false" />
+          <Property Name="LaajuusOSP" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="Esitietovaatimus" Type="String" MaxLength="1000" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Lukukaudet" Relationship="Self.FK_Lukukaudet_Tutkinnonosat" FromRole="Tutkinnonosat" ToRole="Lukukaudet" />
+          <NavigationProperty Name="Opintojaksot" Relationship="Self.FK_Opintojaksot_Tutkinnonosat" FromRole="Tutkinnonosat" ToRole="Opintojaksot" />
+          <NavigationProperty Name="Tutkinnot" Relationship="Self.FK_Tutkinnonosat_Tutkinnot" FromRole="Tutkinnonosat" ToRole="Tutkinnot" />
+          <NavigationProperty Name="Vastuuopettajat" Relationship="Self.FK_Tutkinnonosat_Vastuuopettajat1" FromRole="Tutkinnonosat" ToRole="Vastuuopettajat" />
+        </EntityType>
+        <EntityType Name="Tutkinnot">
+          <Key>
+            <PropertyRef Name="Tutkinto_Id" />
+          </Key>
+          <Property Name="Tutkinto_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tutkintonimi" Type="String" MaxLength="120" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Aloitusvuosi" Type="DateTime" Precision="0" />
+          <Property Name="Päättymisvuosi" Type="DateTime" Precision="0" />
+          <Property Name="Kesto" Type="String" MaxLength="15" FixedLength="false" Unicode="true" />
+          <Property Name="OSP" Type="String" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tutkinnonosat" Relationship="Self.FK_Tutkinnonosat_Tutkinnot" FromRole="Tutkinnot" ToRole="Tutkinnonosat" />
+          <NavigationProperty Name="Tutkintokurssit" Relationship="Self.FK_Tutintokurssit_Tutkinnot" FromRole="Tutkinnot" ToRole="Tutkintokurssit" />
+          <NavigationProperty Name="Tutkintoalueet" Relationship="Self.FK_Tutkintoalueet_Tutkinnot" FromRole="Tutkinnot" ToRole="Tutkintoalueet" />
+        </EntityType>
+        <EntityType Name="Tutkintoalueet">
+          <Key>
+            <PropertyRef Name="Tutkintoalue_Id" />
+          </Key>
+          <Property Name="Tutkintoalue_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tutkinto_Id" Type="Int32" Nullable="false" />
+          <Property Name="Tutkintoaluenimi" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Tutkinnot" Relationship="Self.FK_Tutkintoalueet_Tutkinnot" FromRole="Tutkintoalueet" ToRole="Tutkinnot" />
+        </EntityType>
+        <EntityType Name="Tutkintokurssit">
+          <Key>
+            <PropertyRef Name="Tutkintokurssi_Id" />
+          </Key>
+          <Property Name="Tutkintokurssi_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Tutkinto_Id" Type="Int32" />
+          <Property Name="Opintojakso_Id" Type="Int32" />
+          <NavigationProperty Name="Opintojaksot" Relationship="Self.FK_Tutintokurssit_Opintojaksot" FromRole="Tutkintokurssit" ToRole="Opintojaksot" />
+          <NavigationProperty Name="Tutkinnot" Relationship="Self.FK_Tutintokurssit_Tutkinnot" FromRole="Tutkintokurssit" ToRole="Tutkinnot" />
+        </EntityType>
+        <EntityType Name="Vastuuopettajat">
+          <Key>
+            <PropertyRef Name="Vastuuopettajan_Id" />
+          </Key>
+          <Property Name="Vastuuopettajan_Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Vastuuopettajanimi" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="Opettajan_Id" Type="Int32" />
+          <NavigationProperty Name="Opettajat" Relationship="Self.FK_Vastuuopettajat_Opettajat" FromRole="Vastuuopettajat" ToRole="Opettajat" />
+          <NavigationProperty Name="Tutkinnonosat" Relationship="Self.FK_Tutkinnonosat_Vastuuopettajat1" FromRole="Vastuuopettajat" ToRole="Tutkinnonosat" />
+        </EntityType>
+        <EntityType Name="database_firewall_rules">
+          <Key>
+            <PropertyRef Name="id" />
+            <PropertyRef Name="name" />
+            <PropertyRef Name="start_ip_address" />
+            <PropertyRef Name="end_ip_address" />
+            <PropertyRef Name="create_date" />
+            <PropertyRef Name="modify_date" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="128" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="start_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="end_ip_address" Type="String" MaxLength="45" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="create_date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="modify_date" Type="DateTime" Nullable="false" Precision="3" />
+        </EntityType>
+        <Association Name="FK_Lukukaudet_Kausiennumerot">
+          <End Role="Kausiennumerot" Type="Self.Kausiennumerot" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kausiennumerot">
+              <PropertyRef Name="Kausinumero_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Kausinumero_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Käyttöoikeudet_Roolit">
+          <End Role="Roolit" Type="Self.Roolit" Multiplicity="0..1" />
+          <End Role="Käyttöoikeudet" Type="Self.Käyttöoikeudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roolit">
+              <PropertyRef Name="Rooli_Id" />
+            </Principal>
+            <Dependent Role="Käyttöoikeudet">
+              <PropertyRef Name="Rooli_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Kielet">
+          <End Role="Kielet" Type="Self.Kielet" Multiplicity="0..1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Kielet">
+              <PropertyRef Name="Kieli_id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Kieli_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kurssimateriaalit_Opintomateriaalit">
+          <End Role="Opintomateriaalit" Type="Self.Opintomateriaalit" Multiplicity="0..1" />
+          <End Role="Kurssimateriaalit" Type="Self.Kurssimateriaalit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintomateriaalit">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Principal>
+            <Dependent Role="Kurssimateriaalit">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Kurssimateriaalit_Teknisetmateriaalit">
+          <End Role="Teknisetmateriaalit" Type="Self.Teknisetmateriaalit" Multiplicity="0..1" />
+          <End Role="Kurssimateriaalit" Type="Self.Kurssimateriaalit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teknisetmateriaalit">
+              <PropertyRef Name="Tekininenmateriaali_Id" />
+            </Principal>
+            <Dependent Role="Kurssimateriaalit">
+              <PropertyRef Name="Tekninenmateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Login_Roolit">
+          <End Role="Roolit" Type="Self.Roolit" Multiplicity="1" />
+          <End Role="Login" Type="Self.Login" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Roolit">
+              <PropertyRef Name="Rooli_Id" />
+            </Principal>
+            <Dependent Role="Login">
+              <PropertyRef Name="Rooli_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Opintojaksot">
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintojaksot">
+              <PropertyRef Name="Opintojakson_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Opintojakson_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Toteutuskaudet">
+          <End Role="Toteutuskaudet" Type="Self.Toteutuskaudet" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toteutuskaudet">
+              <PropertyRef Name="Toteutuskausi_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Toteutuskausi_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Toteutustapoja">
+          <End Role="Toteutustapoja" Type="Self.Toteutustapoja" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Toteutustapoja">
+              <PropertyRef Name="Toteutustapa_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Toteutustapa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Lukukaudet_Tutkinnonosat">
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="1" />
+          <End Role="Lukukaudet" Type="Self.Lukukaudet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnonosat">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Principal>
+            <Dependent Role="Lukukaudet">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Opettajat">
+          <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opettajat">
+              <PropertyRef Name="Opettajan_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Opettajan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Vastuuopettajat_Opettajat">
+          <End Role="Opettajat" Type="Self.Opettajat" Multiplicity="0..1" />
+          <End Role="Vastuuopettajat" Type="Self.Vastuuopettajat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opettajat">
+              <PropertyRef Name="Opettajan_Id" />
+            </Principal>
+            <Dependent Role="Vastuuopettajat">
+              <PropertyRef Name="Opettajan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Opintomateriaalit">
+          <End Role="Opintomateriaalit" Type="Self.Opintomateriaalit" Multiplicity="0..1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintomateriaalit">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Opintomateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Teknisetmateriaalit">
+          <End Role="Teknisetmateriaalit" Type="Self.Teknisetmateriaalit" Multiplicity="0..1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Teknisetmateriaalit">
+              <PropertyRef Name="Tekininenmateriaali_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Tekininenmateriaali_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Opintojaksot_Tutkinnonosat">
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="1" />
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnonosat">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Principal>
+            <Dependent Role="Opintojaksot">
+              <PropertyRef Name="Tutkintoosa_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutintokurssit_Opintojaksot">
+          <End Role="Opintojaksot" Type="Self.Opintojaksot" Multiplicity="0..1" />
+          <End Role="Tutkintokurssit" Type="Self.Tutkintokurssit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Opintojaksot">
+              <PropertyRef Name="Opintojakson_Id" />
+            </Principal>
+            <Dependent Role="Tutkintokurssit">
+              <PropertyRef Name="Opintojakso_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutkinnonosat_Tutkinnot">
+          <End Role="Tutkinnot" Type="Self.Tutkinnot" Multiplicity="1" />
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnot">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Principal>
+            <Dependent Role="Tutkinnonosat">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutkinnonosat_Vastuuopettajat1">
+          <End Role="Vastuuopettajat" Type="Self.Vastuuopettajat" Multiplicity="1" />
+          <End Role="Tutkinnonosat" Type="Self.Tutkinnonosat" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Vastuuopettajat">
+              <PropertyRef Name="Vastuuopettajan_Id" />
+            </Principal>
+            <Dependent Role="Tutkinnonosat">
+              <PropertyRef Name="Vastuuopettajan_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutintokurssit_Tutkinnot">
+          <End Role="Tutkinnot" Type="Self.Tutkinnot" Multiplicity="0..1" />
+          <End Role="Tutkintokurssit" Type="Self.Tutkintokurssit" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnot">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Principal>
+            <Dependent Role="Tutkintokurssit">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Tutkintoalueet_Tutkinnot">
+          <End Role="Tutkinnot" Type="Self.Tutkinnot" Multiplicity="1" />
+          <End Role="Tutkintoalueet" Type="Self.Tutkintoalueet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Tutkinnot">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Principal>
+            <Dependent Role="Tutkintoalueet">
+              <PropertyRef Name="Tutkinto_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="tiimi4Entities1" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Kausiennumerot" EntityType="Self.Kausiennumerot" />
+          <EntitySet Name="Käyttöoikeudet" EntityType="Self.Käyttöoikeudet" />
+          <EntitySet Name="Kielet" EntityType="Self.Kielet" />
+          <EntitySet Name="Kurssimateriaalit" EntityType="Self.Kurssimateriaalit" />
+          <EntitySet Name="Login" EntityType="Self.Login" />
+          <EntitySet Name="Lukukaudet" EntityType="Self.Lukukaudet" />
+          <EntitySet Name="Opettajat" EntityType="Self.Opettajat" />
+          <EntitySet Name="Opintojaksot" EntityType="Self.Opintojaksot" />
+          <EntitySet Name="Opintomateriaalit" EntityType="Self.Opintomateriaalit" />
+          <EntitySet Name="Roolit" EntityType="Self.Roolit" />
+          <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" />
+          <EntitySet Name="Teknisetmateriaalit" EntityType="Self.Teknisetmateriaalit" />
+          <EntitySet Name="Toteutuskaudet" EntityType="Self.Toteutuskaudet" />
+          <EntitySet Name="Toteutustapoja" EntityType="Self.Toteutustapoja" />
+          <EntitySet Name="Tutkinnonosat" EntityType="Self.Tutkinnonosat" />
+          <EntitySet Name="Tutkinnot" EntityType="Self.Tutkinnot" />
+          <EntitySet Name="Tutkintoalueet" EntityType="Self.Tutkintoalueet" />
+          <EntitySet Name="Tutkintokurssit" EntityType="Self.Tutkintokurssit" />
+          <EntitySet Name="Vastuuopettajat" EntityType="Self.Vastuuopettajat" />
+          <EntitySet Name="database_firewall_rules" EntityType="Self.database_firewall_rules" />
+          <AssociationSet Name="FK_Lukukaudet_Kausiennumerot" Association="Self.FK_Lukukaudet_Kausiennumerot">
+            <End Role="Kausiennumerot" EntitySet="Kausiennumerot" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Käyttöoikeudet_Roolit" Association="Self.FK_Käyttöoikeudet_Roolit">
+            <End Role="Roolit" EntitySet="Roolit" />
+            <End Role="Käyttöoikeudet" EntitySet="Käyttöoikeudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Kielet" Association="Self.FK_Lukukaudet_Kielet">
+            <End Role="Kielet" EntitySet="Kielet" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kurssimateriaalit_Opintomateriaalit" Association="Self.FK_Kurssimateriaalit_Opintomateriaalit">
+            <End Role="Opintomateriaalit" EntitySet="Opintomateriaalit" />
+            <End Role="Kurssimateriaalit" EntitySet="Kurssimateriaalit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Kurssimateriaalit_Teknisetmateriaalit" Association="Self.FK_Kurssimateriaalit_Teknisetmateriaalit">
+            <End Role="Teknisetmateriaalit" EntitySet="Teknisetmateriaalit" />
+            <End Role="Kurssimateriaalit" EntitySet="Kurssimateriaalit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Login_Roolit" Association="Self.FK_Login_Roolit">
+            <End Role="Roolit" EntitySet="Roolit" />
+            <End Role="Login" EntitySet="Login" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Opintojaksot" Association="Self.FK_Lukukaudet_Opintojaksot">
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Toteutuskaudet" Association="Self.FK_Lukukaudet_Toteutuskaudet">
+            <End Role="Toteutuskaudet" EntitySet="Toteutuskaudet" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Toteutustapoja" Association="Self.FK_Lukukaudet_Toteutustapoja">
+            <End Role="Toteutustapoja" EntitySet="Toteutustapoja" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Lukukaudet_Tutkinnonosat" Association="Self.FK_Lukukaudet_Tutkinnonosat">
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+            <End Role="Lukukaudet" EntitySet="Lukukaudet" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Opettajat" Association="Self.FK_Opintojaksot_Opettajat">
+            <End Role="Opettajat" EntitySet="Opettajat" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Vastuuopettajat_Opettajat" Association="Self.FK_Vastuuopettajat_Opettajat">
+            <End Role="Opettajat" EntitySet="Opettajat" />
+            <End Role="Vastuuopettajat" EntitySet="Vastuuopettajat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Opintomateriaalit" Association="Self.FK_Opintojaksot_Opintomateriaalit">
+            <End Role="Opintomateriaalit" EntitySet="Opintomateriaalit" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Teknisetmateriaalit" Association="Self.FK_Opintojaksot_Teknisetmateriaalit">
+            <End Role="Teknisetmateriaalit" EntitySet="Teknisetmateriaalit" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Opintojaksot_Tutkinnonosat" Association="Self.FK_Opintojaksot_Tutkinnonosat">
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutintokurssit_Opintojaksot" Association="Self.FK_Tutintokurssit_Opintojaksot">
+            <End Role="Opintojaksot" EntitySet="Opintojaksot" />
+            <End Role="Tutkintokurssit" EntitySet="Tutkintokurssit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutkinnonosat_Tutkinnot" Association="Self.FK_Tutkinnonosat_Tutkinnot">
+            <End Role="Tutkinnot" EntitySet="Tutkinnot" />
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutkinnonosat_Vastuuopettajat1" Association="Self.FK_Tutkinnonosat_Vastuuopettajat1">
+            <End Role="Vastuuopettajat" EntitySet="Vastuuopettajat" />
+            <End Role="Tutkinnonosat" EntitySet="Tutkinnonosat" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutintokurssit_Tutkinnot" Association="Self.FK_Tutintokurssit_Tutkinnot">
+            <End Role="Tutkinnot" EntitySet="Tutkinnot" />
+            <End Role="Tutkintokurssit" EntitySet="Tutkintokurssit" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Tutkintoalueet_Tutkinnot" Association="Self.FK_Tutkintoalueet_Tutkinnot">
+            <End Role="Tutkinnot" EntitySet="Tutkinnot" />
+            <End Role="Tutkintoalueet" EntitySet="Tutkintoalueet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="tiimi4ModelStoreContainer" CdmEntityContainer="tiimi4Entities1">
+          <EntitySetMapping Name="Kausiennumerot">
+            <EntityTypeMapping TypeName="tiimi4Model.Kausiennumerot">
+              <MappingFragment StoreEntitySet="Kausiennumerot">
+                <ScalarProperty Name="Kausinumero_Id" ColumnName="Kausinumero_Id" />
+                <ScalarProperty Name="Kausinimero" ColumnName="Kausinimero" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Käyttöoikeudet">
+            <EntityTypeMapping TypeName="tiimi4Model.Käyttöoikeudet">
+              <MappingFragment StoreEntitySet="Käyttöoikeudet">
+                <ScalarProperty Name="Käyttöoikeus_Id" ColumnName="Käyttöoikeus_Id" />
+                <ScalarProperty Name="Käytöoikeusnimi" ColumnName="Käytöoikeusnimi" />
+                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+                <ScalarProperty Name="Rooli_Id" ColumnName="Rooli_Id" />
+                <ScalarProperty Name="Pvm" ColumnName="Pvm" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kielet">
+            <EntityTypeMapping TypeName="tiimi4Model.Kielet">
+              <MappingFragment StoreEntitySet="Kielet">
+                <ScalarProperty Name="Kieli_id" ColumnName="Kieli_id" />
+                <ScalarProperty Name="Kielinimi" ColumnName="Kielinimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Kurssimateriaalit">
+            <EntityTypeMapping TypeName="tiimi4Model.Kurssimateriaalit">
+              <MappingFragment StoreEntitySet="Kurssimateriaalit">
+                <ScalarProperty Name="Kurssimateriaali_Id" ColumnName="Kurssimateriaali_Id" />
+                <ScalarProperty Name="Opintomateriaali_Id" ColumnName="Opintomateriaali_Id" />
+                <ScalarProperty Name="Tekninenmateriaali_Id" ColumnName="Tekninenmateriaali_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Login">
+            <EntityTypeMapping TypeName="tiimi4Model.Login">
+              <MappingFragment StoreEntitySet="Login">
+                <ScalarProperty Name="Login_Id" ColumnName="Login_Id" />
+                <ScalarProperty Name="Sähköposti" ColumnName="Sähköposti" />
+                <ScalarProperty Name="Salasana" ColumnName="Salasana" />
+                <ScalarProperty Name="Rooli_Id" ColumnName="Rooli_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Lukukaudet">
+            <EntityTypeMapping TypeName="tiimi4Model.Lukukaudet">
+              <MappingFragment StoreEntitySet="Lukukaudet">
+                <ScalarProperty Name="Lukukausi_Id" ColumnName="Lukukausi_Id" />
+                <ScalarProperty Name="Kausinumero_Id" ColumnName="Kausinumero_Id" />
+                <ScalarProperty Name="Tutkintoosa_Id" ColumnName="Tutkintoosa_Id" />
+                <ScalarProperty Name="Opintojakson_Id" ColumnName="Opintojakson_Id" />
+                <ScalarProperty Name="Päivienlukumäärä" ColumnName="Päivienlukumäärä" />
+                <ScalarProperty Name="Tuntienmäärä" ColumnName="Tuntienmäärä" />
+                <ScalarProperty Name="Toteutustapa_Id" ColumnName="Toteutustapa_Id" />
+                <ScalarProperty Name="Toteutuskausi_Id" ColumnName="Toteutuskausi_Id" />
+                <ScalarProperty Name="Pvm" ColumnName="Pvm" />
+                <ScalarProperty Name="Klo" ColumnName="Klo" />
+                <ScalarProperty Name="Vikkonpäivä" ColumnName="Vikkonpäivä" />
+                <ScalarProperty Name="Kieli_Id" ColumnName="Kieli_Id" />
+                <ScalarProperty Name="AiheOPtilausjärjestely" ColumnName="AiheOPtilausjärjestely" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opettajat">
+            <EntityTypeMapping TypeName="tiimi4Model.Opettajat">
+              <MappingFragment StoreEntitySet="Opettajat">
+                <ScalarProperty Name="Opettajan_Id" ColumnName="Opettajan_Id" />
+                <ScalarProperty Name="Etunimi" ColumnName="Etunimi" />
+                <ScalarProperty Name="Sukunimi" ColumnName="Sukunimi" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Puh" ColumnName="Puh" />
+                <ScalarProperty Name="Taydetnimet" ColumnName="Taydetnimet" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opintojaksot">
+            <EntityTypeMapping TypeName="tiimi4Model.Opintojaksot">
+              <MappingFragment StoreEntitySet="Opintojaksot">
+                <ScalarProperty Name="Opintojakson_Id" ColumnName="Opintojakson_Id" />
+                <ScalarProperty Name="Opintojaksonnimi" ColumnName="Opintojaksonnimi" />
+                <ScalarProperty Name="Tutkintoosa_Id" ColumnName="Tutkintoosa_Id" />
+                <ScalarProperty Name="Opettajan_Id" ColumnName="Opettajan_Id" />
+                <ScalarProperty Name="Tavoiteet" ColumnName="Tavoiteet" />
+                <ScalarProperty Name="Opintokeskinen" ColumnName="Opintokeskinen" />
+                <ScalarProperty Name="Tekininenmateriaali_Id" ColumnName="Tekininenmateriaali_Id" />
+                <ScalarProperty Name="Opintomateriaali_Id" ColumnName="Opintomateriaali_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Opintomateriaalit">
+            <EntityTypeMapping TypeName="tiimi4Model.Opintomateriaalit">
+              <MappingFragment StoreEntitySet="Opintomateriaalit">
+                <ScalarProperty Name="Opintomateriaali_Id" ColumnName="Opintomateriaali_Id" />
+                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roolit">
+            <EntityTypeMapping TypeName="tiimi4Model.Roolit">
+              <MappingFragment StoreEntitySet="Roolit">
+                <ScalarProperty Name="Rooli_Id" ColumnName="Rooli_Id" />
+                <ScalarProperty Name="Roolinimi" ColumnName="Roolinimi" />
+                <ScalarProperty Name="Roolityyppi" ColumnName="Roolityyppi" />
+                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="sysdiagrams">
+            <EntityTypeMapping TypeName="tiimi4Model.sysdiagrams">
+              <MappingFragment StoreEntitySet="sysdiagrams">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="principal_id" ColumnName="principal_id" />
+                <ScalarProperty Name="diagram_id" ColumnName="diagram_id" />
+                <ScalarProperty Name="version" ColumnName="version" />
+                <ScalarProperty Name="definition" ColumnName="definition" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Teknisetmateriaalit">
+            <EntityTypeMapping TypeName="tiimi4Model.Teknisetmateriaalit">
+              <MappingFragment StoreEntitySet="Teknisetmateriaalit">
+                <ScalarProperty Name="Tekininenmateriaali_Id" ColumnName="Tekininenmateriaali_Id" />
+                <ScalarProperty Name="Kuvaus" ColumnName="Kuvaus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Toteutuskaudet">
+            <EntityTypeMapping TypeName="tiimi4Model.Toteutuskaudet">
+              <MappingFragment StoreEntitySet="Toteutuskaudet">
+                <ScalarProperty Name="Toteutuskausi_Id" ColumnName="Toteutuskausi_Id" />
+                <ScalarProperty Name="Kausinimi" ColumnName="Kausinimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Toteutustapoja">
+            <EntityTypeMapping TypeName="tiimi4Model.Toteutustapoja">
+              <MappingFragment StoreEntitySet="Toteutustapoja">
+                <ScalarProperty Name="Toteutustapa_Id" ColumnName="Toteutustapa_Id" />
+                <ScalarProperty Name="Toteutustapanimi" ColumnName="Toteutustapanimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutkinnonosat">
+            <EntityTypeMapping TypeName="tiimi4Model.Tutkinnonosat">
+              <MappingFragment StoreEntitySet="Tutkinnonosat">
+                <ScalarProperty Name="Tutkintoosa_Id" ColumnName="Tutkintoosa_Id" />
+                <ScalarProperty Name="Tutkintoosanimi" ColumnName="Tutkintoosanimi" />
+                <ScalarProperty Name="Tutkinto_Id" ColumnName="Tutkinto_Id" />
+                <ScalarProperty Name="Vastuuopettajan_Id" ColumnName="Vastuuopettajan_Id" />
+                <ScalarProperty Name="LaajuusOSP" ColumnName="LaajuusOSP" />
+                <ScalarProperty Name="Esitietovaatimus" ColumnName="Esitietovaatimus" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutkinnot">
+            <EntityTypeMapping TypeName="tiimi4Model.Tutkinnot">
+              <MappingFragment StoreEntitySet="Tutkinnot">
+                <ScalarProperty Name="Tutkinto_Id" ColumnName="Tutkinto_Id" />
+                <ScalarProperty Name="Tutkintonimi" ColumnName="Tutkintonimi" />
+                <ScalarProperty Name="Aloitusvuosi" ColumnName="Aloitusvuosi" />
+                <ScalarProperty Name="Päättymisvuosi" ColumnName="Päättymisvuosi" />
+                <ScalarProperty Name="Kesto" ColumnName="Kesto" />
+                <ScalarProperty Name="OSP" ColumnName="OSP" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutkintoalueet">
+            <EntityTypeMapping TypeName="tiimi4Model.Tutkintoalueet">
+              <MappingFragment StoreEntitySet="Tutkintoalueet">
+                <ScalarProperty Name="Tutkintoalue_Id" ColumnName="Tutkintoalue_Id" />
+                <ScalarProperty Name="Tutkinto_Id" ColumnName="Tutkinto_Id" />
+                <ScalarProperty Name="Tutkintoaluenimi" ColumnName="Tutkintoaluenimi" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Tutkintokurssit">
+            <EntityTypeMapping TypeName="tiimi4Model.Tutkintokurssit">
+              <MappingFragment StoreEntitySet="Tutkintokurssit">
+                <ScalarProperty Name="Tutkintokurssi_Id" ColumnName="Tutkintokurssi_Id" />
+                <ScalarProperty Name="Tutkinto_Id" ColumnName="Tutkinto_Id" />
+                <ScalarProperty Name="Opintojakso_Id" ColumnName="Opintojakso_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Vastuuopettajat">
+            <EntityTypeMapping TypeName="tiimi4Model.Vastuuopettajat">
+              <MappingFragment StoreEntitySet="Vastuuopettajat">
+                <ScalarProperty Name="Vastuuopettajan_Id" ColumnName="Vastuuopettajan_Id" />
+                <ScalarProperty Name="Vastuuopettajanimi" ColumnName="Vastuuopettajanimi" />
+                <ScalarProperty Name="Opettajan_Id" ColumnName="Opettajan_Id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="database_firewall_rules">
+            <EntityTypeMapping TypeName="tiimi4Model.database_firewall_rules">
+              <MappingFragment StoreEntitySet="database_firewall_rules">
+                <ScalarProperty Name="id" ColumnName="id" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="start_ip_address" ColumnName="start_ip_address" />
+                <ScalarProperty Name="end_ip_address" ColumnName="end_ip_address" />
+                <ScalarProperty Name="create_date" ColumnName="create_date" />
+                <ScalarProperty Name="modify_date" ColumnName="modify_date" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

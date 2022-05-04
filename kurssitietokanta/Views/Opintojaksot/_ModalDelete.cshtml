@@ -1,0 +1,48 @@
+﻿@model kurssitietokanta.Models.Opintojaksot
+
+@{
+    ViewBag.Title = "Poista";
+}
+
+@*tästä alkaa modal-ikkuna--------------------------------------------------------------------------*@
+<div class="modal fade" id="ModalOpintojaksotDelete">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Oletko varma, että haluat poistaa tutkinnon? @Html.HiddenFor(model => model.Opintojakson_Id)</h3>
+                @*<button class="btn btn-warning" onclick="deleteOrder(@Model.Opintojakson_Id)"><i class="jquerydelete fas fa-trash-alt"></i></button>*@
+            </div>
+            <div class="modal-body">
+                <div>
+                    <dl class="dl-horizontal text-left">
+                        <dt>Opintojakson nimi</dt>
+                        <dd>@Html.DisplayFor(model => model.Opintojaksonnimi)</dd>
+                        <dt>Tavoitteet</dt>
+                        <dd>@Html.DisplayFor(model => model.Tavoiteet)</dd>
+                        <dt>Opintokeskeinen</dt>
+                        <dd>@Html.DisplayFor(model => model.Opintokeskinen)</dd>
+                        <dt>Opettajan etunimi</dt>
+                        <dd>@Html.DisplayFor(model => model.Opettajat.Etunimi)</dd>
+                        <dt>Opintomateriaalit</dt>
+                        <dd>@Html.DisplayFor(model => model.Opintomateriaalit.Kuvaus)</dd>
+                        <dt>Tekniset materiaalit</dt>
+                        <dd>@Html.DisplayFor(model => model.Teknisetmateriaalit.Kuvaus)</dd>
+                        <dt>Tutkinnon osan nimi</dt>
+                        <dd>@Html.DisplayFor(model => model.Tutkinnonosat.Tutkintoosanimi)</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <button type="submit" value="Delete" class="btn btn-sm card-buttons"><i class="fas fa-trash-alt"></i></button>
+                        <a href="@Url.Action("Index", "Opintojaksot")" class="btn btn-sm card-buttons"><i class="fas fa-times"></i></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

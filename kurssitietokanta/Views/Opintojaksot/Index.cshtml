@@ -1,0 +1,165 @@
+﻿@model  PagedList.IPagedList<kurssitietokanta.Models.Opintojaksot>
+@using PagedList.Mvc
+<Link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Opintojaksot";
+}
+
+@*Tämä on jqueryä*@
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".creNewOpintojakso").click(function () {
+                console.log("Klikkasit uuden opintojakson luontipainiketta: ");
+                var url = "/Opintojaksot/_ModalCreate";
+                console.log(url);
+
+                $("#createOpintojakso").append(" <b>Avataan tutkinnon luonti-ikkuna...</b>");
+
+                var $detailDivCreate = $("#createOpintojakso");
+                $.get(url, function (data) {
+                    $detailDivCreate.replaceWith(data);
+                    $('#ModalOpintojaksotCreate').modal('show');
+                });
+            });
+        });
+        $(function () {
+            $(".getOpintojaksonId").click(function () {
+                let opintojaksonidTemp = $(this).data("opintojaksonid");
+                console.log("Klikkasit: " + opintojaksonidTemp);
+                var url = "/Opintojaksot/_ModalEdit/?id=" + opintojaksonidTemp;
+                console.log(url);
+
+                $("#opintojaksotEdit").append(" <b>Avataan opintojakson " + opintojaksonidTemp + " muokkausikkuna...</b>");
+
+                var $detailDivEdit = $("#opintojaksotEdit");
+                $.get(url, function (data) {
+                    $detailDivEdit.replaceWith(data);
+                    $('#ModalOpintojaksotEdit').modal('show');
+                });
+            });
+        });
+        $(function () {
+            $(".delOpintojaksonId").click(function () {
+                let opintojaksonidDel = $(this).data("opintojaksonid");
+                console.log("Klikkasit poistettavaa: " + opintojaksonidDel);
+                var url = "/Opintojaksot/_ModalDelete/?id=" + opintojaksonidDel;
+                console.log(url);
+
+                $("#orderDelete").append(" <b>Avataan opintojakson " + opintojaksonidDel + " poistoikkuna...</b>");
+
+                var $detailDivDelete = $("#orderDelete");
+                $.get(url, function (data) {
+                    $detailDivDelete.replaceWith(data);
+                    $('#ModalOpintojaksotDelete').modal('show');
+                });
+            });
+        });
+
+        function show_dropdown() {
+        var click = document.getElementById("dropdown-items");
+        if (click.style.display === "none") {
+            click.style.display = "block";
+        } else {
+            click.style.display = "none";
+
+        }
+    }
+    </script>
+}
+
+<div class="dropdown mt-4 mb-0">
+    <button onclick="show_dropdown()" class="btn dropdown-btn"><strong>Lisää linkkejä</strong><i style='font-size:20px;margin-left:20px' class='fas'>&#xf0c9;</i></button>
+    <div id="dropdown-items" style="display:none">
+        <a href="~/Vastuuopettajat/Index"><strong>Vastuuopettajat </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Tutkintoalueet/Index"><strong>Tutkintoalueet </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Tutkintokurssit/Index"><strong>Tutkintokurssit </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Opintomateriaalit/Index"><strong>Opintomateriaalit </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Teknisetmateriaalit/Index"><strong>Tekniset materiaalit </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Kurssimateriaalit/Index"><strong>Kurssimateriaalit </strong> <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+@*<script>
+</script>*@
+
+<div class="container text-center title-Opettajat">
+    <div class="row">
+        <div class="col-md-12 ">
+            <h3>OPINTOJAKSOT</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+
+    @using (Html.BeginForm("Index", "Opintojaksot", FormMethod.Get))
+    {
+        <div class="input-group mb-4 text-center search-box" style="display:table;margin-left:auto;margin-right:auto">
+            @Html.TextBox("SearchedItem", ViewBag.SearchedItemList as string, new { placeholder = "Etsi opintojakso nimellä:", @class = "form-Opintojaksot" })
+            <button class="btn" type="submit" value="form-Opintojaksot">Etsi</button>
+        </div>
+
+    }
+</div>
+
+<div id="createOpintojakso" class="row text-left">
+    <div class="col-md-6 ">
+        Luo uusi opintojakso <button class="creNewOpintojakso fas fa-plus-square"></button>
+    </div>
+    <div class="col-md-6 print">
+        <div id="print">
+            <button onclick="location.href='@Url.Action("Print", "Opintojaksot")';return false;">Print <i style="color:#b59b5d" class="fa fa-print"></i></button>
+            <button onclick="location.href='@Url.Action("ExportToCSV", "Opintojaksot")';return false;">Vie CSV:hen <i style="color:#b59b5d" class="fas fa-file-csv"></i></button>
+            <button onclick="location.href='@Url.Action("ExportToExcel", "Opintojaksot")';return false;">Vie EXCELIIN <i style="color:#b59b5d" class="fas fa-file-excel"></i></button>
+        </div>
+    </div>
+</div>
+
+<div id="orderDelete"></div>
+
+
+<div class="row">
+    <div id="opintojaksotEdit" class="table-responsive-xl">
+
+        <table class="table table-striped ">
+            <thead>
+                <tr>
+
+                    <th>@Html.ActionLink("Opintojakso", "Index", new { SortByOrder = ViewBag.ShowSortedOpintojakso }, new { @class = "btn btn-dark" })</th>
+                    <th>Tutkinnonosa</th>
+                    <th>Opintokeskinen</th>
+                    <th>Tavoiteet</th>
+                    <th>@Html.ActionLink("Opettaja", "Index", new { SortByOrder = ViewBag.ShowSortedOpttaja }, new { @class = "btn btn-dark" })</th>
+                    <th>Opintomateriaalit</th>
+                    <th>Tekniset materiaalit</th>
+                    <th></th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Opintojaksonnimi)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Tutkinnonosat.Tutkintoosanimi)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Opintokeskinen)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Tavoiteet)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Opettajat.Taydetnimet)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Opintomateriaalit.Kuvaus)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Teknisetmateriaalit.Kuvaus)</td>
+                        <td> <button class="getOpintojaksonId fas fa-edit" data-opintojaksonid="@item.Opintojakson_Id"></button></td>
+                        <td> <button class="delOpintojaksonId fas fa-trash-alt" data-opintojaksonid="@item.Opintojakson_Id"></button></td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+    Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+    @Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortByOrder = ViewBag.SortedPage, PageItems = ViewBag.SearchedItemList }))
+
+
+

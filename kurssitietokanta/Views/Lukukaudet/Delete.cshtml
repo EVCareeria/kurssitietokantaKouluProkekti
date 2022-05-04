@@ -1,0 +1,120 @@
+﻿@model kurssitietokanta.Models.Lukukaudet
+
+@{
+    ViewBag.Title = "Delete";
+}
+
+<h2>Delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Lukukaudet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Päivienlukumäärä)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Päivienlukumäärä)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tuntienmäärä)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tuntienmäärä)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pvm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pvm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Klo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vikkonpäivä)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vikkonpäivä)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AiheOPtilausjärjestely)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AiheOPtilausjärjestely)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kausiennumerot.Kausinumero_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kausiennumerot.Kausinumero_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kielet.Kielinimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kielet.Kielinimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opintojaksot.Opintojaksonnimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opintojaksot.Opintojaksonnimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Toteutuskaudet.Kausinimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toteutuskaudet.Kausinimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Toteutustapoja.Toteutustapanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toteutustapoja.Toteutustapanimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutkinnonosat.Tutkintoosanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutkinnonosat.Tutkintoosanimi)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

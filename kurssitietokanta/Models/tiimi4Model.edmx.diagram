@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="2ba347a67d6e47a081ca876a4eac7d10" Name="Diagram1">
+        <EntityTypeShape EntityType="tiimi4Model.Kausiennumerot" Width="1.5" PointX="3" PointY="2.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Käyttöoikeudet" Width="1.5" PointX="11" PointY="11.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Kielet" Width="1.5" PointX="3" PointY="16.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Kurssimateriaalit" Width="1.5" PointX="11.25" PointY="3.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Login" Width="1.5" PointX="11" PointY="14" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Lukukaudet" Width="1.5" PointX="5.25" PointY="4.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Opettajat" Width="1.5" PointX="1.5" PointY="13" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Opintojaksot" Width="1.5" PointX="8.25" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Opintomateriaalit" Width="1.5" PointX="6" PointY="2.125" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Roolit" Width="1.5" PointX="8.75" PointY="12.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.sysdiagrams" Width="1.5" PointX="12.75" PointY="6.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Teknisetmateriaalit" Width="1.5" PointX="6" PointY="10.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Toteutuskaudet" Width="1.5" PointX="3" PointY="19.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Toteutustapoja" Width="1.5" PointX="3" PointY="21.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Tutkinnonosat" Width="1.5" PointX="3" PointY="5.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Tutkinnot" Width="1.5" PointX="0.75" PointY="5.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Tutkintoalueet" Width="1.5" PointX="3" PointY="10" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Tutkintokurssit" Width="1.5" PointX="10.5" PointY="6.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.Vastuuopettajat" Width="1.5" PointX="0.75" PointY="2.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="tiimi4Model.database_firewall_rules" Width="1.5" PointX="13.75" PointY="0.75" IsExpanded="true" />
+        <AssociationConnector Association="tiimi4Model.FK_Lukukaudet_Kausiennumerot" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Käyttöoikeudet_Roolit" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Lukukaudet_Kielet" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Kurssimateriaalit_Opintomateriaalit" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Kurssimateriaalit_Teknisetmateriaalit" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Login_Roolit" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Lukukaudet_Opintojaksot" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Lukukaudet_Toteutuskaudet" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Lukukaudet_Toteutustapoja" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Lukukaudet_Tutkinnonosat" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Opintojaksot_Opettajat" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Vastuuopettajat_Opettajat" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Opintojaksot_Opintomateriaalit" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Opintojaksot_Teknisetmateriaalit" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Opintojaksot_Tutkinnonosat" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Tutintokurssit_Opintojaksot" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Tutkinnonosat_Tutkinnot" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Tutkinnonosat_Vastuuopettajat1" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Tutintokurssit_Tutkinnot" ManuallyRouted="false" />
+        <AssociationConnector Association="tiimi4Model.FK_Tutkintoalueet_Tutkinnot" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

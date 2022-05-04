@@ -1,0 +1,114 @@
+﻿@model kurssitietokanta.Models.Lukukaudet
+
+@{
+    ViewBag.Title = "Details";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Lukukaudet</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Päivienlukumäärä)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Päivienlukumäärä)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tuntienmäärä)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tuntienmäärä)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Pvm)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Pvm)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Klo)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Klo)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vikkonpäivä)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vikkonpäivä)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.AiheOPtilausjärjestely)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AiheOPtilausjärjestely)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kausiennumerot.Kausinumero_Id)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kausiennumerot.Kausinumero_Id)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Kielet.Kielinimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Kielet.Kielinimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Opintojaksot.Opintojaksonnimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Opintojaksot.Opintojaksonnimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Toteutuskaudet.Kausinimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toteutuskaudet.Kausinimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Toteutustapoja.Toteutustapanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Toteutustapoja.Toteutustapanimi)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Tutkinnonosat.Tutkintoosanimi)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Tutkinnonosat.Tutkintoosanimi)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Lukukausi_Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

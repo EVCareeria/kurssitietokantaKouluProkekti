@@ -1,0 +1,81 @@
+﻿@*@model PagedList.IPagedList<kurssitietokanta.Models.Tutkinnot>*@
+@model kurssitietokanta.Models.Tutkinnot
+@*@using PagedList.Mvc*@
+@*@Styles.Render("~/Content/css")*@
+@*@Scripts.Render("~/bundles/modernizr")*@
+<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.13.0/css/all.css">
+<link href="~/Content/Site.css" rel="stylesheet" />
+@*<Link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />*@
+
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css" integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ" crossorigin="anonymous">
+
+
+@{
+    ViewBag.Title = "Luo uusi";
+}
+
+@*tästä alkaa modal-ikkuna--------------------------------------------------------------------------*@
+<div class="modal fade" id="ModalTutkinnotCreate">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Lisää tutkinto</h3>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Create", "Tutkinnot", FormMethod.Post, new { id = "createForm" }))
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        <div class="form-group text-left">
+                            @Html.LabelFor(model => model.Tutkintonimi, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-12">
+                                @Html.EditorFor(model => model.Tutkintonimi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Tutkintonimi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group text-left row-cols-xl-1">
+                            @Html.LabelFor(model => model.Aloitusvuosi, "Aloitusvuosi, anna muodossa vuosi-kk-pv", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Aloitusvuosi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Aloitusvuosi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group text-left row-cols-xl-1">
+                            @Html.LabelFor(model => model.Päättymisvuosi, "Päättymisvuosi, anna muodossa vuosi-kk-pv", htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Päättymisvuosi, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Päättymisvuosi, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group text-left">
+                            @Html.LabelFor(model => model.Kesto, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Kesto, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Kesto, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+
+                        <div class="form-group text-left">
+                            @Html.LabelFor(model => model.OSP, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.OSP, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.OSP, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="text-danger">
+                            @Html.DisplayFor(model => model.LoginErrorMessage)
+                        </label>
+                    </div>
+                }
+            </div>
+            <div class="modal-footer">
+                @*Formin lähettävä button, joka ei kuitenkaan ole formin sisällä, mutta viittaa formin ID:hen*@
+                <button type="submit" class="btn btn-sm card-buttons" form="createForm"><i class="fas fa-check"></i></button>
+                @*Kontrollerin kutsu Url.Action -komennolla, jotta peruuttaminen johtaa alkutilanteeseen*@
+                <a href="@Url.Action("Index", "Tutkinnot")" class="btn-sm card-buttons"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+</div>

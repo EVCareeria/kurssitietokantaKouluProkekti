@@ -1,0 +1,46 @@
+﻿@model kurssitietokanta.Models.Kurssimateriaalit
+
+@{
+    ViewBag.Title = "Poista";
+}
+
+@*tästä alkaa modal-ikkuna--------------------------------------------------------------------------*@
+<div class="modal fade" id="ModalKurssimateriaaliDelete">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Oletko varma, että haluat poistaa Kurssimateriaalin? @Html.HiddenFor(model => model.Kurssimateriaali_Id)</h3>
+                <button class="btn btn-warning" onclick="deleteOrder(@Model.Kurssimateriaali_Id)"><i class="jquerydelete fas fa-trash-alt"></i></button>
+            </div>
+            <div class="modal-body">
+                <div>
+                    <dl class="dl-horizontal text-left">
+                        <dt>@Html.DisplayNameFor(model => model.Opintomateriaalit.Kuvaus)</dt>
+
+                        <dd>@Html.DisplayFor(model => model.Opintomateriaalit.Kuvaus)</dd>
+
+                        <dt>@Html.DisplayNameFor(model => model.Teknisetmateriaalit.Kuvaus)</dt>
+
+                        <dd>@Html.DisplayFor(model => model.Teknisetmateriaalit.Kuvaus)</dd>
+                    </dl>
+                </div>
+            </div>
+            <div class="modal-footer">
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <button type="submit" value="Delete" class="btn btn-sm card-buttons"><i class="fas fa-trash-alt"></i></button>
+                        <a href="@Url.Action("Index", "Kurssimateriaalit")" class="btn btn-sm card-buttons"><i class="fas fa-times"></i></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+

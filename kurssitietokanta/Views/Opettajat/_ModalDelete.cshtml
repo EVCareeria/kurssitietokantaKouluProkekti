@@ -1,0 +1,70 @@
+﻿@model kurssitietokanta.Models.Opettajat
+
+@{
+    ViewBag.Title = "Poista";
+}
+
+@*tästä alkaa modal-ikkuna--------------------------------------------------------------------------*@
+<div class="modal fade" id="ModalOpettajatDelete">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h3>Oletko varma, että haluat poistaa opettajan? @Html.HiddenFor(model => model.Opettajan_Id)</h3>
+                <button class="btn btn-warning" onclick="deleteOrder(@Model.Opettajan_Id)"><i class="jquerydelete fas fa-trash-alt"></i></button>
+            </div>
+            <div class="modal-body">
+                @*modal-tyyppisen ikkunan koodiesimerkki - alkuperäisen lomakkeen koodi alkaa*@
+                @*@using (Html.BeginForm("_ModalDelete", "Opettajat", FormMethod.Post, new { id = "editForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.Opettajan_Id)
+                    </div>
+                  }*@
+                <div>
+                    @*<h4>Opettaja</h4>*@
+                    <dl class="dl-horizontal text-left">
+                        <dt>@Html.DisplayNameFor(model => model.Etunimi)</dt>
+                        <dd>@Html.DisplayFor(model => model.Etunimi)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Sukunimi)</dt>
+                        <dd>@Html.DisplayFor(model => model.Sukunimi)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Email)</dt>
+                        <dd>@Html.DisplayFor(model => model.Email)</dd>
+                        <dt>@Html.DisplayNameFor(model => model.Puh)</dt>
+                        <dd>@Html.DisplayFor(model => model.Puh)</dd>
+                    </dl>
+                    @*@using (html.beginform())
+                    {
+                    @html.antiforgerytoken()*@
+                    @*<div class="form-actions no-color">
+                        <input type="submit" value="Delete" class="btn btn-default" /> |
+                        @Html.ActionLink("Back to List", "Index")
+                    </div>*@
+                    @*}*@
+                </div>
+                @*}*@
+            </div>
+            <div class="modal-footer">
+                @*Formin lähettävä button, joka ei kuitenkaan ole formin sisällä, mutta viittaa formin ID:hen*@
+                @*<button type="submit" class="btn btn-sm card-buttons" form="editForm"><i class="fas fa-check"></i></button>*@
+                @*Kontrollerin kutsu Url.Action -komennolla, jotta peruuttaminen johtaa alkutilanteeseen*@
+                @*<a href="@Url.Action("Index", "Opettajat")" class="btn btn-sm card-buttons"><i class="fas fa-times"></i></a>*@
+
+                @using (Html.BeginForm())
+                {
+                    @Html.AntiForgeryToken()
+
+                    <div class="form-actions no-color">
+                        <button type="submit" value="Delete" class="btn btn-sm card-buttons"><i class="fas fa-trash-alt"></i></button>
+                        <a href="@Url.Action("Index", "Opettajat")" class="btn btn-sm card-buttons"><i class="fas fa-times"></i></a>
+                    </div>
+                }
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+

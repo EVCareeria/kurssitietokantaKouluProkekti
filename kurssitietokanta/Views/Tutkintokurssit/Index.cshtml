@@ -1,0 +1,90 @@
+﻿@model  PagedList.IPagedList<kurssitietokanta.Models.Tutkintokurssit>
+@using PagedList.Mvc
+<Link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+
+
+<div class="dropdown mt-4 mb-0">
+    <button onclick="show_dropdown()" class="btn dropdown-btn"><strong>Lisää linkkejä</strong><i style='font-size:20px;margin-left:20px' class='fas'>&#xf0c9;</i></button>
+    <div id="dropdown-items" style="display:none">
+        <a href="~/Tutkintoalueet/Index"><strong>Tutkintoalueet </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Tutkintokurssit/Index"><strong>Tutkintokurssit </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Opintomateriaalit/Index"><strong>Opintomateriaalit </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Teknisetmateriaalit/Index"><strong>Tekniset materiaalit </strong> <i class="fas fa-arrow-right"></i></a> <br />
+        <a href="~/Kurssimateriaalit/Index"><strong>Kurssimateriaalit </strong> <i class="fas fa-arrow-right"></i></a>
+    </div>
+</div>
+
+<script>
+    function show_dropdown() {
+        var click = document.getElementById("dropdown-items");
+        if (click.style.display === "none") {
+            click.style.display = "block";
+        } else {
+            click.style.display = "none";
+
+        }
+    }
+</script>
+
+<div class="container text-center title-Opettajat">
+    <div class="row">
+        <div class="col-md-12 ">
+            <h3>TUTKINTOKURSSIT</h3>
+        </div>
+    </div>
+</div>
+
+<div class="col-12">
+    @using (Html.BeginForm("Index", "Tutkintokurssit", FormMethod.Get))
+    {
+        <div class="input-group mb-4 text-center search-box" style="display:table;margin-left:auto;margin-right:auto">
+            @Html.TextBox("SearchedItem", ViewBag.SearchedItemList as string, new { placeholder = "Etsi Tutkinto nimellä:", @class = "form-Tutkintokurssit" })
+            <button class="btn" type="submit" value="form-Tutkintokurssit">Search</button>
+        </div>
+
+    }
+</div>
+
+<div id="TutkintokurssitCreate" class="row text-left">
+    <div class="col-md-6 ">
+        Luo uusi Tutkintokurssi <button class="creNewTutkintokurssi fas fa-plus-square"></button>
+    </div>
+    <div class="col-md-6 print">
+        <div id="print">
+            <button onclick="location.href='@Url.Action("Print", "Tutkintokurssit")';return false;">Print <i style="color:#b59b5d" class="fa fa-print"></i></button>
+            <button onclick="location.href='@Url.Action("ExportToCSV", "Tutkintokurssit")';return false;">Vie CSV:hen <i style="color:#b59b5d" class="fas fa-file-csv"></i></button>
+            <button onclick="location.href='@Url.Action("ExportToExcel", "Tutkintokurssit")';return false;">Vie EXCELIIN <i style="color:#b59b5d" class="fas fa-file-excel"></i></button>
+        </div>
+    </div>
+</div>
+
+<div class="row">
+    <div id="" class="table-responsive">
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Opintojakso</th>
+                    <th>@Html.ActionLink("Tutkinto", "Index", new { SortByOrder = ViewBag.ShowSortedTutkinto }, new { @class = "btn btn-dark" })</th>
+                    <th></th>
+                </tr>
+            </thead>
+            <tbody>
+                @foreach (var item in Model)
+                {
+                    <tr>
+                        <td>@Html.DisplayFor(modelItem => item.Opintojaksot.Opintojaksonnimi)</td>
+                        <td>@Html.DisplayFor(modelItem => item.Tutkinnot.Tutkintonimi)</td>
+                        <td>
+                            <button class="    fas fa-edit" data-opintojaksonid=""></button>
+                            <button class="     fas fa-trash-alt" data-opintojaksonid=""></button>
+                        </td>
+
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, Page => Url.Action("Index", new { Page, SortByOrder = ViewBag.SortedPage, PageItems = ViewBag.SearchedItemList }))
